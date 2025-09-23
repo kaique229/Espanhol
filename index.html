@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz de Espanhol</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        #score {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 100;
+        }
+        #container {
+            max-width: 500px;
+            margin: 80px auto 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        button {
+            background: #0078d7;
+            color: #fff;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #005fa3;
+        }
+        .option {
+            display: block;
+            margin: 12px 0;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            transition: background 0.2s;
+        }
+        .option:hover {
+            background: #e0eaff;
+        }
+        #video {
+            width: 100%;
+            max-width: 480px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="score">Pontuação: 0</div>
+    <div id="container">
+        <video id="video" controls>
+            <source src="WhatsApp Video 2025-09-18 at 21.53.21.mp4" type="video/mp4">
+            Seu navegador não suporta vídeo.
+        </video>
+        <button id="startBtn">Iniciar Quiz</button>
+    </div>
+    <script>
+    const questions = [
+        {
+            question: "Como se diz 'Bom dia' em espanhol?",
+            options: ["Buenas noches", "Buenos días", "Buenas tardes", "Hola"],
+            answer: 1
+        },
+        {
+            question: "Qual é o número 'cinco' em espanhol?",
+            options: ["Cuatro", "Cinco", "Seis", "Siete"],
+            answer: 1
+        },
+        {
+            question: "Como se diz 'Obrigado' em espanhol?",
+            options: ["Gracias", "Por favor", "Adiós", "Perdón"],
+            answer: 0
+        },
+        {
+            question: "Qual destas palavras significa 'livro' em espanhol?",
+            options: ["Libro", "Mesa", "Casa", "Perro"],
+            answer: 0
+        },
+        {
+            question: "Como se diz 'Sim' em espanhol?",
+            options: ["No", "Sí", "Tal vez", "Nunca"],
+            answer: 1
+        }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const container = document.getElementById('container');
+    const scoreDiv = document.getElementById('score');
+    const startBtn = document.getElementById('startBtn');
+    const video = document.getElementById('video');
+
+    // Esconde o vídeo no início
+    video.style.display = 'none';
+
+    // Cria o popup do vídeo
+    function createVideoPopup() {
+        // Remove popup anterior se existir
+        const oldPopup = document.getElementById('video-popup');
+        if (oldPopup) oldPopup.remove();
+
+        const popup = document.createElement('div');
+        popup.id = 'video-popup';
+        popup.style.position = 'fixed';
+        popup.style.top = '50%';
+        popup.style.left = '50%';
+        popup.style.transform = 'translate(-50%, -50%)';
+        popup.style.width = '350px'; // diminuído
+        popup.style.maxWidth = '95vw';
+        popup.style.height = '420px'; // diminuído
+        popup.style.maxHeight = '95vh';
+        popup.style.background = '#fff';
+        popup.style.boxShadow = '0 4px 24px rgba(0,0,0,0.2)';
+        popup.style.borderRadius = '12px';
+        popup.style.display = 'flex';
+        popup.style.flexDirection = 'column';
+        popup.style.alignItems = 'center';
+        popup.style.justifyContent = 'center';
+        popup.style.zIndex = '9999';
+        popup.style.padding = '24px';
+
+        // Botão de fechar
+        const closeBtn = document.createElement('button');
+        closeBtn.textContent = 'Fechar';
+        closeBtn.style.position = 'absolute';
+        closeBtn.style.top = '16px';
+        closeBtn.style.right = '24px';
+        closeBtn.style.background = '#e74c3c';
+        closeBtn.style.color = '#fff';
+        closeBtn.style.border = 'none';
+        closeBtn.style.borderRadius = '4px';
+        closeBtn.style.padding = '6px 14px';
+        closeBtn.style.cursor = 'pointer';
+        closeBtn.onclick = () => {
+            video.pause();
+            popup.remove();
+        };
+        popup.appendChild(closeBtn);
+
+        // Configura o vídeo
+        video.style.display = 'block';
+        video.style.width = '100%';
+        video.style.maxWidth = '320px'; // diminuído
+        video.style.height = '180px'; // diminuído
+        video.currentTime = 0;
+        video.pause();
+
+        // Remove o vídeo do container principal se estiver lá
+        if (video.parentElement !== popup) {
+            document.body.appendChild(video);
+        }
+
+        popup.appendChild(video);
+
+        // Botão para continuar após o vídeo
+        const nextBtn = document.createElement('button');
+        nextBtn.textContent = 'Mostrar Pergunta';
+        nextBtn.style.marginTop = '24px';
+        nextBtn.onclick = () => {
+            video.pause();
+            popup.remove();
+            renderQuestion();
+        };
+        popup.appendChild(nextBtn);
+
+        document.body.appendChild(popup);
+    }
+
+    startBtn.onclick = function() {
+        startBtn.style.display = 'none';
+        showQuestion();
+    };
+
+    function showQuestion() {
+        if (currentQuestion < questions.length) {
+            // Limpa o container
+            container.innerHTML = '';
+            createVideoPopup();
+        } else {
+            showResult();
+        }
+    }
+
+    function renderQuestion() {
+        const q = questions[currentQuestion];
+        container.innerHTML = `
+            <div style="font-size:20px; margin-bottom:18px;">${q.question}</div>
+            <div id="options"></div>
+        `;
+        const optionsDiv = document.getElementById('options');
+        q.options.forEach((opt, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'option';
+            btn.textContent = opt;
+            btn.onclick = () => selectOption(idx);
+            optionsDiv.appendChild(btn);
+        });
+    }
+
+    function selectOption(selected) {
+        if (selected === questions[currentQuestion].answer) {
+            score += 1000;
+        }
+        scoreDiv.textContent = `Pontuação: ${score}`;
+        currentQuestion++;
+        setTimeout(showQuestion, 300);
+    }
+
+    function showResult() {
+        container.innerHTML = `
+            <h2>Quiz Finalizado!</h2>
+            <p>Você acertou ${score/1000} de ${questions.length} questões.</p>
+            <p><strong>Pontuação final: ${score}</strong></p>
+            <button onclick="location.reload()">Tentar Novamente</button>
+        `;
+    }
+    </script>
+</body>
+</html>
