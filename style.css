@@ -1,0 +1,114 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-image: url('fotos/d35e4940-4154-4f39-a5be-ed55dedbdc81.jpg');
+    background-repeat: no-repeat;
+    background-size: cover; 
+   
+}
+
+
+
+#quiz-question{
+    font-size: 20px;
+    color: white;
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1;
+    background-image: inherit;
+    background-repeat: inherit;
+    background-size: inherit;
+    background-position: inherit;
+    filter: blur(8px);
+    pointer-events: none;
+}
+body {
+    background-position: 0% 0%;
+    color: #222;
+    animation: bg-pan 30s linear infinite;
+    
+
+}
+
+@keyframes bg-pan {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 51%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+
+#titulo {
+    display: block;
+    margin: 20px auto;
+    width: 600px;
+    height: auto;
+}
+
+
+.container {
+height: 100vh;
+width: 100%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin-top: -30px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   width: 30.3%;
+   margin-top: 2rem;
+   margin-bottom: 1.25rem;
+   margin-top: -30px;
+}
+.menu-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 33.3%;
+}
+
+.menu-options .btn-mine:first-child {
+    margin-right: 10px;
+}
+
+.btn-mine{
+    background: #727272;
+    color: white;
+    width: 100%;
+    padding: .5rem 0;
+    margin-bottom: .75rem;
+    text-shadow: 2px 2px 0 rgb(0, 0, 0, 0.8);
+    font-size: 1.25rem;
+    letter-spacing:  .025rem;
+    border: 2px solid rgb(0, 0, 0, 1);
+    box-shadow: inset 3px 3px 0 rgb(255, 255, 255, 0.5), 
+    inset -3px -3px 0 rgb(0, 0, 0, 0.5);
+    cursor: pointer;
+
+}
+
+.btn-mine:hover {
+    background: rgb(115, 107, 221, 1);
+
+}
+
+
+.btn-mine:focus{
+    color: rgb(246, 246, 44);
+    outline: none;
+}
