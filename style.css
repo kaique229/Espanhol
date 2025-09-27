@@ -10,6 +10,11 @@ body {
 
 
 
+
+
+
+
+
 #quiz-question{
     font-size: 20px;
     color: white;
@@ -34,6 +39,11 @@ body {
 
 }
 
+.quiz-active::before {
+    filter: none !important; /* Remove o blur */
+    background-image: none !important; /* Limpa o fundo antigo */
+}
+
 @keyframes bg-pan {
     0% {
         background-position: 0% 0%;
@@ -52,6 +62,8 @@ body {
     margin: 20px auto;
     width: 600px;
     height: auto;
+    margin-left: -30%;
+    margin-right: -30%;
 }
 
 
@@ -75,6 +87,7 @@ margin-top: -30px;
    margin-bottom: 1.25rem;
    margin-top: -30px;
 }
+
 .menu-options {
     display: flex;
     justify-content: space-between;
@@ -111,4 +124,145 @@ margin-top: -30px;
 .btn-mine:focus{
     color: rgb(246, 246, 44);
     outline: none;
+}
+
+
+#question{
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    background-color: #b5b1b1cc;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 2px;
+    margin-bottom: 20px;
+}
+
+#que{margin-bottom: 20px;}
+
+#question-container{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    background-color: #00000077;
+    padding: 3%;
+    border-radius: 30px;
+    
+}
+
+#quiz{
+margin-left: 29%;
+margin-top: -40%;
+}
+
+#next{
+    width: 30%;
+    margin-left: 16%;
+    margin-top: -15px;
+
+}
+
+#score{
+    font-size: 30px;
+    color: white;
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   margin-left: 15%;
+    margin-top: 1%;
+}
+
+
+/* Container da barra de tempo (o fundo) */
+#timer-bar-container {
+    width: 100%;
+    height: 20px; /* Altura da barra */
+    background-color: #333; /* Cor de fundo da área vazia */
+    border-radius: 5px;
+    margin: 15px 0 25px 0;
+    overflow: hidden; /* Garante que a barra não vaze */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* A barra de tempo que se move */
+#timer-bar-fill {
+    height: 100%;
+    width: 100%; /* Começa em 100% */
+    background-color: #4CAF50; /* Cor inicial (Verde) */
+    transition: width 1s linear; /* A transição suave é fundamental para a animação! */
+    /* Você pode adicionar um gradiente para um visual mais moderno */
+    /* background: linear-gradient(90deg, #4CAF50 0%, #76FF03 100%); */
+}
+
+/* Efeito quando a barra está acabando (vermelho) */
+#timer-bar-fill.time-low {
+    background-color: #FFC300; /* Amarelo de alerta */
+}
+#timer-bar-fill.time-up {
+    background-color: #FF4136; /* Vermelho forte */
+}
+
+
+
+/* --- BARRA DE TEMPO --- */
+#timer-bar-container {
+    width: 100%;
+    max-width: 400px;
+    height: 20px;
+    background-color: #333;
+    border-radius: 5px;
+    margin: 15px auto 25px auto; 
+    overflow: hidden; 
+}
+#timer-bar-fill {
+    height: 100%;
+    width: 100%; 
+    background-color: #4CAF50;
+    transition: width 1s linear, background-color 0.5s ease; 
+}
+#timer-bar-fill.time-low { background-color: #FFC300; }
+#timer-bar-fill.time-up { background-color: #FF4136; }
+
+/* --- ESTILOS DO MODAL (POPUP) --- */
+.modal {
+    display: none; /* Inicia oculto */
+    position: fixed; 
+    z-index: 2000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6); 
+    justify-content: center; /* Centraliza o conteúdo */
+    align-items: center;    
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 30px;
+    border-radius: 15px;
+    width: 80%; 
+    max-width: 450px; 
+    text-align: center;
+    position: relative;
+    color: #333;
+}
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 28px;
+    color: #aaa;
+}
+#history-list {
+    list-style-type: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    text-align: left;
+}
+#history-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
 }

@@ -1,28 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Machu Picchu</title>
-    <link rel="stylesheet" href="style.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Machu Picchu</title>
+        <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    
     <div class="container" id="container">
-        <img src="titulo.png" alt="" id="titulo">
         
         <div class="menu">
+            <img src="titulo.png" alt="" id="titulo">
             <button class="btn-mine" id="jogar">Jugar</button>
-            <button class="btn-mine">*****</button>
+            <button class="btn-mine">instrucciones</button>
             <button class="btn-mine">*****</button>
         </div>
         <div class="menu-options">
-              <button class="btn-mine">instrucción</button>
+            
+            <button class="btn-mine">puntuación</button>
               <button class="btn-mine">Salir</button>
+            </div>
         </div>
 
+<div id="history-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="hideHistoryModal()">&times;</span> 
+        <h2>Histórico de Pontuações</h2>
+        <ul id="history-list">
+            </ul>
+        <button class="btn-mine" onclick="hideHistoryModal()">Fechar</button>
+    </div>
+</div>
+
+
+<div id="poupup-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="hidePopupModal()">&times;</span> 
+        <h2>Instrucciones</h2>
+        <p>1. El juego consta de 10 preguntas de opción múltiple sobre Machu Picchu.</p>
+        <p>2. Cada pregunta tiene cuatro opciones, pero solo una es correcta.</p>
+        <p>3. Selecciona la respuesta que creas correcta haciendo clic en el botón correspondiente.</p>
+        <p>4. Después de seleccionar una respuesta, haz clic en "Siguiente" para avanzar a la siguiente pregunta.</p>
+        <p>5. Al final del juego, se mostrará tu puntuación total y podrás ver tu historial de puntuaciones.</p>
+        <p>5. Tendrás 40 segundos para responder cada pregunta</p>
+        <button class="btn-mine" onclick="hidePopupModal()">Fechar</button>
     </div>
 
+</div>
 
+        
+        
+        
+        <div id="quiz" style="display:none;">
+        <div id="question-container">
+            <div id="que"><p id="question"></p></div>
+            
+            <div id="answers"></div>
+        </div>
+        <button class="btn-mine answer-btn" id="next" style="display:none;">Siguiente</button>
+        <p id="score" style="display:none;"></p>
+        
+    </div>
+    
+
+    
+    
+    
     <script src="script.js" ></script>
 </body>
 </html>
