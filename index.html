@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Machu Picchu</title>
-        <link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machu Picchu</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     
@@ -13,22 +13,22 @@
         <div class="menu">
             <img src="titulo.png" alt="" id="titulo">
             <button class="btn-mine" id="jogar">Jugar</button>
-            <button class="btn-mine">instrucciones</button>
-            <button class="btn-mine">*****</button>
+            <button class="btn-mine" id="info-btn">Instrucciones</button>
+            <button class="btn-mine">Creditos</button>
         </div>
         <div class="menu-options">
             
-            <button class="btn-mine">puntuación</button>
-              <button class="btn-mine">Salir</button>
-            </div>
+            <button class="btn-mine" id="historico-btn">Puntuación</button>
+            <button class="btn-mine" id="sair-btn">Salir</button>
         </div>
+    </div>
 
 <div id="history-modal" class="modal">
     <div class="modal-content">
         <span class="close-button" onclick="hideHistoryModal()">&times;</span> 
         <h2>Histórico de Pontuações</h2>
         <ul id="history-list">
-            </ul>
+        </ul>
         <button class="btn-mine" onclick="hideHistoryModal()">Fechar</button>
     </div>
 </div>
@@ -38,21 +38,21 @@
     <div class="modal-content">
         <span class="close-button" onclick="hidePopupModal()">&times;</span> 
         <h2>Instrucciones</h2>
-        <p>1. El juego consta de 10 preguntas de opción múltiple sobre Machu Picchu.</p>
+        <p>1. El juego consta de **20 preguntas** de opción múltiple sobre Machu Picchu/Perú.</p>
         <p>2. Cada pregunta tiene cuatro opciones, pero solo una es correcta.</p>
         <p>3. Selecciona la respuesta que creas correcta haciendo clic en el botón correspondiente.</p>
-        <p>4. Después de seleccionar una respuesta, haz clic en "Siguiente" para avanzar a la siguiente pregunta.</p>
-        <p>5. Al final del juego, se mostrará tu puntuación total y podrás ver tu historial de puntuaciones.</p>
-        <p>5. Tendrás 40 segundos para responder cada pregunta</p>
-        <button class="btn-mine" onclick="hidePopupModal()">Fechar</button>
+        <p>4. Tienes **10 corazones** como vidas. Pierdes 1 corazón por cada respuesta incorrecta o por no responder a tiempo.</p>
+        <p>5. Tendrás **50 segundos** para responder cada pregunta.</p>
+        <p>6. Al final del juego, se mostrará tu puntuación total y podrás ver tu historial de puntuaciones.</p>
+        <button class="btn-mine" onclick="hidePopupModal()">Cerrar</button>
     </div>
-
 </div>
 
-        
-        
-        
-        <div id="quiz" style="display:none;">
+    
+    
+    
+    
+    <div id="quiz" style="display:none;">
         <div id="question-container">
             <div id="que"><p id="question"></p></div>
             
