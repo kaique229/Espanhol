@@ -14,7 +14,7 @@
             <img src="titulo.png" alt="" id="titulo">
             <button class="btn-mine" id="jogar">Jugar</button>
             <button class="btn-mine" id="info-btn">Instrucciones</button>
-            <button class="btn-mine">Creditos</button>
+            <button class="btn-mine" onclick="openMapModal(1)" >Mapa mental</button>
         </div>
         <div class="menu-options">
             
@@ -47,6 +47,25 @@
         <button class="btn-mine" onclick="hidePopupModal()">Cerrar</button>
     </div>
 </div>
+
+
+<div id="map-gallery-modal" class="map-modal-container" class="modal" >
+    <div class="map-modal-content" class="modal">
+        <span class="map-close-button" onclick="closeMapModal()">&times;</span> 
+        
+        <div class="map-image-display">
+            <img class="map-slide" src="mapa1.png" alt="Mapa 1">
+            <img class="map-slide" src="mapa2.png" alt="Mapa 2">
+            <img class="map-slide" src="mapa3.png" alt="Mapa 3">
+        </div>
+        
+        <a class="map-prev" onclick="changeMapSlide(-1)">&#10094;</a>
+        <a class="map-next" onclick="changeMapSlide(1)">&#10095;</a>
+    </div>
+</div>
+
+
+
 
     
     

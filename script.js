@@ -24,7 +24,7 @@ const questions = [
         answers: ["Siete maravillas del mundo moderno", "Siete maravillas del mundo antiguo", "Siete colinas de Roma", "Siete mares"],
         correct: 0
     },
-    // --- NOVAS 15 PERGUNTAS SOBRE PERU/MACHU PICCHU ---
+    
     {
         question: "¿Cuál es la capital de Perú?",
         answers: ["Cuzco", "Arequipa", "Lima", "Iquitos"],
@@ -625,3 +625,60 @@ document.addEventListener('DOMContentLoaded', () => {
     const popupCloseBtn = document.querySelector('#poupup-modal .close-button');
     if (popupCloseBtn) popupCloseBtn.onclick = hidePopupModal;
 });
+
+
+
+
+let mapSlideIndex = 0; // Começa na primeira imagem (índice 0)
+
+const mapModal = document.getElementById("map-gallery-modal");
+const mapSlides = document.getElementsByClassName("map-slide"); // Seleciona todas as imagens
+
+// Função para abrir o modal da galeria
+function openMapModal(startIndex = 1) {
+    // Garante que o índice inicial está dentro dos limites
+    mapSlideIndex = Math.max(0, Math.min(startIndex - 1, mapSlides.length - 1));
+    showMapSlide(mapSlideIndex);
+    mapModal.style.display = "block";
+}
+
+// Função para fechar o modal da galeria
+function closeMapModal() {
+    mapModal.style.display = "none";
+}
+
+// Função para avançar ou retroceder no carrossel
+function changeMapSlide(n) {
+    showMapSlide(mapSlideIndex + n);
+}
+
+// Função para mostrar a imagem atual e esconder as outras
+function showMapSlide(n) {
+    // Calcula o novo índice e garante o loop (carrossel infinito)
+    if (n >= mapSlides.length) {
+        mapSlideIndex = 0;
+    } else if (n < 0) {
+        mapSlideIndex = mapSlides.length - 1;
+    } else {
+        mapSlideIndex = n;
+    }
+    
+    // Esconde todas as imagens
+    for (let i = 0; i < mapSlides.length; i++) {
+        mapSlides[i].style.display = "none";
+    }
+    
+    // Mostra a imagem atual
+    mapSlides[mapSlideIndex].style.display = "block";
+}
+
+// Inicializa a galeria ao carregar a página (opcional, se quiser uma imagem visível fora do modal)
+// showMapSlide(mapSlideIndex);
+
+// Fechar o modal da galeria ao clicar fora dele
+window.onclick = function(event) {
+    // Verifica se o clique foi na área escura do modal da galeria
+    if (event.target == mapModal) {
+        closeMapModal();
+    }
+}
