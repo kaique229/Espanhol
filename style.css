@@ -355,3 +355,143 @@ margin-top: -40%;
 .map-prev:hover, .map-next:hover {
     background-color: rgba(0,0,0,0.8);
 }
+
+
+
+/* --- ADAPTAÇÕES PARA CELULARES E TABLETS (MAX-WIDTH: 768PX) --- */
+@media screen and (max-width: 768px) {
+
+    /* --- GERAL / BACKGROUND --- */
+    /* Remove a animação do background-position para economizar recursos em móveis */
+    body {
+        animation: none;
+        background-position: center center !important; /* Centraliza o fundo estático */
+    }
+
+    /* O pseudo-elemento blur/fundo fixo */
+    body::before {
+        /* Garante que o fundo não ocupe mais que o necessário e se adapte */
+        background-attachment: scroll; /* Muda de fixed para scroll */
+        background-size: cover;
+        /* Blur original ou ajustado para menor impacto */
+        filter: blur(5px); 
+    }
+
+    /* --- CONTAINER PRINCIPAL --- */
+    .container {
+        /* Ajusta o espaçamento superior para telas menores */
+        margin-top: 0; 
+        padding: 20px;
+        /* Permite o scroll se o conteúdo for grande demais */
+        height: auto; 
+        min-height: 100vh;
+        box-sizing: border-box;
+    }
+
+    /* --- TÍTULO (IMAGEM/LOGO) --- */
+    #titulo {
+        width: 90%; /* Ajusta para 90% da largura do viewport */
+        max-width: 400px; /* Limita o tamanho máximo */
+        margin: 20px auto; /* Centraliza horizontalmente */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* --- CAIXA DE PERGUNTA E OPÇÕES (#question-container) --- */
+    #question-container {
+        width: 90%; /* Ocupa a maior parte da tela */
+        max-width: 500px; /* Mantém um limite de tamanho legível */
+        padding: 5%;
+        margin-top: 10px;
+    }
+
+    /* O ID #quiz estava com margens absolutas que quebram o layout */
+    #quiz {
+        margin-left: auto; /* Remove a margem fixa */
+        margin-top: 0; /* Remove a margem fixa */
+        display: block;
+        width: 100%; /* Ocupa 100% da área pai (question-container) */
+    }
+
+    #question {
+        font-size: 18px; /* Reduz o tamanho da fonte da pergunta */
+        padding: 15px;
+    }
+
+    /* --- BOTÕES DE OPÇÕES --- */
+    .menu {
+        width: 100%; /* Ocupa toda a largura do container */
+        margin-top: 1.5rem;
+    }
+
+    .menu-options {
+        /* Os botões devem ficar em coluna para telas pequenas */
+        flex-direction: column;
+        width: 100%; /* Ocupa toda a largura */
+    }
+
+    .menu-options .btn-mine:first-child {
+        margin-right: 0; /* Remove a margem extra do primeiro botão */
+    }
+
+    .btn-mine {
+        font-size: 1rem; /* Reduz o tamanho da fonte do botão */
+        padding: 0.75rem; /* Aumenta o padding para ser mais fácil de clicar */
+        margin-bottom: 1rem;
+    }
+
+    /* --- SCORE E BOTÃO NEXT --- */
+    #score {
+        font-size: 24px; /* Reduz o tamanho da pontuação */
+        margin-left: 0; /* Centraliza ou alinha à esquerda */
+        text-align: center;
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    #next {
+        width: 80%; /* Botão "Próximo" maior e mais fácil de clicar */
+        margin-left: 10%; /* Centraliza o botão */
+        margin-top: 5px; 
+    }
+
+    /* --- BARRA DE TEMPO --- */
+    #timer-bar-container {
+        max-width: 90%; /* Ajusta o máximo para caber na tela */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* --- MODAIS (POPUP) --- */
+    .modal-content {
+        width: 90%; /* Ocupa mais espaço na tela para melhor leitura */
+        padding: 20px;
+    }
+
+    /* --- MODAL DO MAPA (GALERIA) --- */
+    .map-modal-content {
+        width: 95%;
+        margin: 5% auto; /* Traz a imagem mais para cima */
+    }
+
+    .map-image-display {
+        max-height: 85vh; /* Usa mais altura da tela */
+    }
+    
+    .map-slide {
+        max-height: 80vh; /* Ajusta o tamanho da imagem */
+        margin-top: 0;
+    }
+
+    .map-close-button {
+        top: 10px; /* Traz o 'X' para perto do topo da tela */
+        right: 10px;
+        font-size: 30px;
+    }
+    
+    .map-prev, .map-next {
+        font-size: 16px;
+        padding: 10px;
+        margin-top: -35px; /* Ajusta a posição vertical */
+    }
+}
